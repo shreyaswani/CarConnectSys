@@ -1,6 +1,6 @@
 
--- CREATE TABLE Customers (
---     customer_id INT IDENTITY(1,1) PRIMARY KEY,
+-- CREATE TABLE Customer (
+--     CustomerID INT IDENTITY(1,1) PRIMARY KEY,
 --     FirstName NVARCHAR(50) NOT NULL,
 --     LastName NVARCHAR(50) NOT NULL,
 --     Email NVARCHAR(100) NOT NULL UNIQUE,
@@ -10,10 +10,6 @@
 --     Password NVARCHAR(255) NOT NULL,
 --     RegistrationDate DATETIME DEFAULT GETDATE()
 -- );
-
-
--- table name is Customer not customers and change customer_id also
-
 
 -- CREATE TABLE Vehicle (
 --     VehicleID INT PRIMARY KEY IDENTITY(1,1),
@@ -26,6 +22,17 @@
 --     DailyRate DECIMAL(10, 2)
 -- );
 
+-- CREATE TABLE Reservation (
+--     ReservationID INT IDENTITY(1,1) PRIMARY KEY, 
+--     CustomerID INT NOT NULL, 
+--     VehicleID INT NOT NULL, 
+--     StartDate DATE NOT NULL,  
+--     EndDate DATE NOT NULL, 
+--     TotalCost DECIMAL(10, 2) NOT NULL,  
+--     Status NVARCHAR(20) NOT NULL CHECK (Status IN ('pending', 'confirmed', 'completed')), 
+--     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+--     FOREIGN KEY (VehicleID) REFERENCES Vehicle(VehicleID)
+-- );
 
 -- CREATE TABLE Admin (
 --     AdminID INT IDENTITY(1,1) PRIMARY KEY, 
@@ -39,25 +46,13 @@
 --     JoinDate DATE NOT NULL DEFAULT GETDATE()
 -- );
 
-
-
--- CREATE TABLE Reservation (
---     ReservationID INT IDENTITY(1,1) PRIMARY KEY, 
---     customer_id INT NOT NULL, 
---     VehicleID INT NOT NULL, 
---     StartDate DATE NOT NULL,  
---     EndDate DATE NOT NULL,   
---     TotalCost DECIMAL(10, 2) NOT NULL,  
---     Status NVARCHAR(20) NOT NULL CHECK (Status IN ('pending', 'confirmed', 'completed')), 
---     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
---     FOREIGN KEY (VehicleID) REFERENCES Vehicle(VehicleID)
--- );
-
-
-select * from Customers
+-- select * from Customer
 select * from Vehicle
 select * from Admin
 select * from Reservation
+
+
+
 
 
 
